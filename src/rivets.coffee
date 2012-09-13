@@ -257,6 +257,10 @@ classBinding = (name) -> (el, value) ->
 
 # Returns an iteration binding routine for the specified collection.
 iterationBinding = (name) -> (el, collection, binding) ->
+
+  # Make the collection an array if it's an instance of Backbone.Collection
+  collection = collection.models if collection instanceof Backbone.Collection
+
   if binding.iterated?
     for iteration in binding.iterated
       iteration.view.unbind()
